@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Smart Albums</string>
+    <string name="string_add_photos">打开您的图片</string>
+    <string name="string_course">教程</string>
+    <string name="string_setting">设置</string>
+    <string name="string_help_and_feedback">帮助和反馈</string>
 </resources>
