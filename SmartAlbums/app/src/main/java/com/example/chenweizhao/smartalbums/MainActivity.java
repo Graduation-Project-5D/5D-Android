@@ -1,5 +1,6 @@
 package com.example.chenweizhao.smartalbums;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.chenweizhao.smartalbums.adapter.AdapterMoreItem;
 import com.example.chenweizhao.smartalbums.data.DataMoreItem;
+import com.example.chenweizhao.smartalbums.dialog.AddPhotoDialog;
 
 import java.util.ArrayList;
 
@@ -30,7 +32,11 @@ public class MainActivity extends AppCompatActivity {
     View mPopupWindowView;
     ListView mListView;
     PopupWindow mPopupWindow;
-    Boolean isFirstShow = true;
+    Boolean isFirstShowPopupWindow = true;
+
+    //添加图片选择弹窗
+    Dialog mAddPhotoDialog;
+    Boolean isFirstShowAddPhotoDialog = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +57,20 @@ public class MainActivity extends AppCompatActivity {
                 ShowPopupWindow(v);
             }
         });
+
+        mAddPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAddPhotoDialog();
+            }
+        });
     }
+
 
     private void ShowPopupWindow(View view) {
         //第一次使用弹窗，初始化
-        if (isFirstShow) {
+        if (isFirstShowPopupWindow) {
+            isFirstShowPopupWindow = false;
             mPopupWindowView = LayoutInflater.from(mContext).inflate(
                     R.layout.popupwindow_more, null);
             mListView = mPopupWindowView.findViewById(R.id.more_list);
@@ -82,11 +97,19 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         mPopupWindow.showAsDropDown(view, -276, 0);
-
     }
 
-    private AdapterMoreItem getAdapterMoreItem() {
+    private void showAddPhotoDialog() {
+        if (isFirstShowAddPhotoDialog) {
+            isFirstShowAddPhotoDialog = false;
+            mAddPhotoDialog = new AddPhotoDialog(mContext);
+        }
+        mAddPhotoDialog.show();
+    }
 
+
+
+    private AdapterMoreItem getAdapterMoreItem() {
         Drawable drawable1 = getResources().getDrawable(R.drawable.course);
         Drawable drawable2 = getResources().getDrawable(R.drawable.setting);
         Drawable drawable3 = getResources().getDrawable(R.drawable.help);

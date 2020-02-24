@@ -4,4 +4,7 @@
     <string name="string_course">教程</string>
     <string name="string_setting">设置</string>
     <string name="string_help_and_feedback">帮助和反馈</string>
+    <string name="string_add_photo_by_album">从设备中选择</string>
+    <string name="string_add_photo_by_album_remark">只选择图片</string>
+    <string name="string_add_photo_by_camera">拍照</string>
 </resources>
