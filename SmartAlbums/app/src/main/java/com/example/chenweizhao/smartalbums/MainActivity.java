@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     Dialog mAddPhotoDialog;
     Boolean isFirstShowAddPhotoDialog = true;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == Constant.REQUESTCAMERACODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                AddPhotoHelper.openCamera(mActivity);
+                AddPhotoHelper.openCamera(mActivity, mAddPhotoDialog);
 
             } else {
                 Toast.makeText(mActivity, "相机权限已被禁止,请在设置中打开", Toast.LENGTH_SHORT).show();
@@ -196,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(mActivity, "相册权限申请成功", Toast.LENGTH_SHORT).show();
 
             } else {
-                AddPhotoHelper.openAlbum(mActivity);
+                AddPhotoHelper.openAlbum(mActivity, mAddPhotoDialog);
             }
         }
     }

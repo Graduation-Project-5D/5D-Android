@@ -73,7 +73,7 @@ public class AddPhotoDialog extends Dialog {
         if (ContextCompat.checkSelfPermission(mActivity, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.CAMERA}, Constant.REQUESTCAMERACODE);
         } else {
-            AddPhotoHelper.openCamera(mActivity);
+            AddPhotoHelper.openCamera(mActivity, this);
         }
     }
 
@@ -83,7 +83,7 @@ public class AddPhotoDialog extends Dialog {
         if (ContextCompat.checkSelfPermission(mActivity, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constant.REQUESTALBUMCODE);
         } else {
-            AddPhotoHelper.openAlbum(mActivity);
+            AddPhotoHelper.openAlbum(mActivity, this);
         }
     }
 
