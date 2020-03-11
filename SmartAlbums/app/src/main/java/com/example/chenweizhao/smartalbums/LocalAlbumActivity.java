@@ -1,5 +1,6 @@
 package com.example.chenweizhao.smartalbums;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -52,8 +53,11 @@ public class LocalAlbumActivity extends AppCompatActivity {
         mFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<DataImageFile> selectedImageFIles = mAdapterLocalAlbumItem.mSelectedImageFiles;
-
+                ArrayList<DataImageFile> selectedImageFiles = mAdapterLocalAlbumItem.mSelectedImageFiles;
+                Intent intent = new Intent(LocalAlbumActivity.this, HomeActivity.class);
+                intent.putExtra("selectedimagefiles", selectedImageFiles);
+                startActivity(intent);
+                finish();
             }
         });
     }

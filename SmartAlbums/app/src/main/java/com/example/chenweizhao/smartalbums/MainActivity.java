@@ -147,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         //打开相册
         if (requestCode == Constant.OPENALBUMCODE){
-            mAddPhotoDialog.dismiss();
             //RESULT_OK为-1,代表完成
             if (resultCode == RESULT_OK) {
                 try {
@@ -164,7 +163,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         } else if (requestCode == Constant.OPENCAMERACODE) { //打开摄像头
-            mAddPhotoDialog.dismiss();
             //RESULT_OK为-1,代表完成拍照
             if (resultCode == RESULT_OK) {
                 Bitmap bmp = (Bitmap) data.getExtras().get("data");

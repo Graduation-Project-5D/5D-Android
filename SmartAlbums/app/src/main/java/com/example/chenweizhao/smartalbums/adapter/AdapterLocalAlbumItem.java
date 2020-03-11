@@ -38,6 +38,7 @@ public class AdapterLocalAlbumItem extends BaseAdapter {
     public AdapterLocalAlbumItem(Context context, ArrayList<DataImageFile> imageFiles) {
         mContext = context;
         mImageFiles = imageFiles;
+        mSelectedImageFiles = new ArrayList<>();
         options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(false)

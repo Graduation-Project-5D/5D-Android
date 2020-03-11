@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LocalAlbumActivity"/>
+        <activity android:name=".HomeActivity"/>
     </application>
 
     <!--拍照-->
