@@ -19,6 +19,9 @@
         </activity>
         <activity android:name=".LocalAlbumActivity"/>
         <activity android:name=".HomeActivity"/>
+        <activity android:name="HomePeopleAlbumActivity"/>
+        <activity android:name="HomeImageScoreActivity"/>
+        <activity android:name=".HomeExcellentVideoActivity"/>
     </application>
 
     <!--拍照-->

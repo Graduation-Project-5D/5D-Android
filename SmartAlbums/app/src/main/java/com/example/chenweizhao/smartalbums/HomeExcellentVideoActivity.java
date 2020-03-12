@@ -1,6 +1,5 @@
 package com.example.chenweizhao.smartalbums;
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,7 +25,7 @@ import com.example.chenweizhao.smartalbums.data.DataMoreItem;
 
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeExcellentVideoActivity extends AppCompatActivity {
     private ImageView mBack;
     private ImageView mMore;
     private ImageView mSelected_image;
@@ -49,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home_excellent_video);
 
         mSelectedImageFiles = (ArrayList<DataImageFile>) getIntent().getSerializableExtra("selectedimagefiles");
 
@@ -161,20 +160,13 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
-                    case R.id.people_album:
-                        Intent intent1 = new Intent(HomeActivity.this, HomePeopleAlbumActivity.class);
-                        intent1.putExtra("selectedimagefiles", mSelectedImageFiles);
-                        startActivity(intent1);
+                    case R.id.make_video:
                         break;
-                    case R.id.ai_select:
-                        Intent intent2 = new Intent(HomeActivity.this, HomeImageScoreActivity.class);
-                        intent2.putExtra("selectedimagefiles", mSelectedImageFiles);
-                        startActivity(intent2);
+                    case R.id.image_filter:
                         break;
-                    case R.id.excellent_video:
-                        Intent intent3 = new Intent(HomeActivity.this, HomeExcellentVideoActivity.class);
-                        intent3.putExtra("selectedimagefiles", mSelectedImageFiles);
-                        startActivity(intent3);
+                    case R.id.special_image:
+                        break;
+                    case R.id.intelligent_recommendation:
                         break;
                     default:
                         break;
@@ -223,7 +215,7 @@ public class HomeActivity extends AppCompatActivity {
             mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(HomeActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeExcellentVideoActivity.this, "" + position, Toast.LENGTH_SHORT).show();
                     if (position == 0) {
 
                     } else if (position == 1) {
@@ -261,3 +253,4 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 }
+
