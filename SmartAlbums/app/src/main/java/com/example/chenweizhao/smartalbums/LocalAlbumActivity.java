@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.chenweizhao.smartalbums.adapter.AdapterLocalAlbumItem;
 import com.example.chenweizhao.smartalbums.data.DataImageFile;
@@ -54,6 +55,10 @@ public class LocalAlbumActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ArrayList<DataImageFile> selectedImageFiles = mAdapterLocalAlbumItem.mSelectedImageFiles;
+                if (selectedImageFiles == null || selectedImageFiles.size() == 0) {
+                    Toast.makeText(LocalAlbumActivity.this, "未选择图片", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(LocalAlbumActivity.this, HomeActivity.class);
                 intent.putExtra("selectedimagefiles", selectedImageFiles);
                 startActivity(intent);

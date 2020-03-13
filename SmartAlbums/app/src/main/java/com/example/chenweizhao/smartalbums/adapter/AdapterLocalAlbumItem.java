@@ -33,12 +33,14 @@ public class AdapterLocalAlbumItem extends BaseAdapter {
     private Context mContext;
     private DisplayImageOptions options;
     private ArrayList<DataImageFile> mImageFiles;
+    private ArrayList<CheckBox> mAllCheckBoxes;
     public ArrayList<DataImageFile> mSelectedImageFiles;
 
     public AdapterLocalAlbumItem(Context context, ArrayList<DataImageFile> imageFiles) {
         mContext = context;
         mImageFiles = imageFiles;
         mSelectedImageFiles = new ArrayList<>();
+        mAllCheckBoxes = new ArrayList<>();
         options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(false)
@@ -73,6 +75,7 @@ public class AdapterLocalAlbumItem extends BaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_local_album, null);
             viewHolder.imageView = (ImageView) convertView.findViewById(R.id.imageView);
             viewHolder.checkBox = (CheckBox) convertView.findViewById(R.id.checkbox);
+            mAllCheckBoxes.add(viewHolder.checkBox);
             viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -95,6 +98,15 @@ public class AdapterLocalAlbumItem extends BaseAdapter {
     private class ViewHolder {
         ImageView imageView;
         CheckBox checkBox;
+    }
+
+    public void selectAllImage() {
+        mSelectedImageFiles = mImageFiles;
+        for (int i = 0; i < mAllCheckBoxes.size(); i++) {
+            if (!mAllCheckBoxes.get(i).isChecked()) {
+                mAllCheckBoxes.get(i).setChecked(true);
+            }
+        }
     }
 
 

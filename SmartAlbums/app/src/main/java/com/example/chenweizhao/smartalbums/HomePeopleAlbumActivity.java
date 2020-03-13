@@ -161,10 +161,14 @@ public class HomePeopleAlbumActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.face_detection:
+                        //1张图片
                         break;
                     case R.id.face_verification:
+                        //2张图片
                         break;
                     case R.id.face_clustering:
+                        //直接全部聚类，不用选择
+                        //用户可以点击“确定”按钮进行人脸聚类处理，或者点击“取消”按钮;
                         break;
                     default:
                         break;

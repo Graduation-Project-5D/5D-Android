@@ -22,6 +22,7 @@
         <activity android:name="HomePeopleAlbumActivity"/>
         <activity android:name="HomeImageScoreActivity"/>
         <activity android:name=".HomeExcellentVideoActivity"/>
+        <activity android:name="SelectImageActivity"/>
     </application>
 
     <!--拍照-->

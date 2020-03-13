@@ -160,6 +160,7 @@ public class HomeExcellentVideoActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
+                    //全部1张或1张以上
                     case R.id.make_video:
                         break;
                     case R.id.image_filter:
