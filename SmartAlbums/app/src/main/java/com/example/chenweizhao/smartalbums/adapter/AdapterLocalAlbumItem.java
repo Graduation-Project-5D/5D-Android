@@ -101,7 +101,7 @@ public class AdapterLocalAlbumItem extends BaseAdapter {
     }
 
     public void selectAllImage() {
-        mSelectedImageFiles = mImageFiles;
+        mSelectedImageFiles.clear();
         for (int i = 0; i < mAllCheckBoxes.size(); i++) {
             if (!mAllCheckBoxes.get(i).isChecked()) {
                 mAllCheckBoxes.get(i).setChecked(true);
