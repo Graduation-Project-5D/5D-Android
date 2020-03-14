@@ -30,7 +30,7 @@ public class SelectImageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_local_album_detail);
+        setContentView(R.layout.activity_select_image);
         initView();
         initData();
         initAction();

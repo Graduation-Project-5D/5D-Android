@@ -1,5 +1,6 @@
 package com.example.chenweizhao.smartalbums;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -159,19 +160,26 @@ public class HomeExcellentVideoActivity extends AppCompatActivity {
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                Intent intent = new Intent(HomeExcellentVideoActivity.this, SelectImageActivity.class);
+                intent.putExtra("files", mSelectedImageFiles);
                 switch (checkedId) {
                     //全部1张或1张以上
                     case R.id.make_video:
+                        intent.putExtra("selectcountstype", 3);
                         break;
                     case R.id.image_filter:
+                        intent.putExtra("selectcountstype", 4);
                         break;
                     case R.id.special_image:
+                        intent.putExtra("selectcountstype", 5);
                         break;
                     case R.id.intelligent_recommendation:
+                        intent.putExtra("selectcountstype", 6);
                         break;
                     default:
                         break;
                 }
+                startActivity(intent);
 
 
             }

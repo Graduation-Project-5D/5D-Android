@@ -1,5 +1,6 @@
 package com.example.chenweizhao.smartalbums;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -48,7 +49,7 @@ public class HomePeopleAlbumActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_ai_select);
+        setContentView(R.layout.activity_home_people_album);
 
         mSelectedImageFiles = (ArrayList<DataImageFile>) getIntent().getSerializableExtra("selectedimagefiles");
 
@@ -159,14 +160,21 @@ public class HomePeopleAlbumActivity extends AppCompatActivity {
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                Intent intent = new Intent(HomePeopleAlbumActivity.this, SelectImageActivity.class);
+                intent.putExtra("files", mSelectedImageFiles);
                 switch (checkedId) {
                     case R.id.face_detection:
+                        intent.putExtra("selectcountstype", 1);
+                        startActivity(intent);
                         //1张图片
                         break;
                     case R.id.face_verification:
+                        intent.putExtra("selectcountstype", 2);
+                        startActivity(intent);
                         //2张图片
                         break;
                     case R.id.face_clustering:
+                        Toast.makeText(HomePeopleAlbumActivity.this, "人脸聚类弹窗", Toast.LENGTH_SHORT).show();
                         //直接全部聚类，不用选择
                         //用户可以点击“确定”按钮进行人脸聚类处理，或者点击“取消”按钮;
                         break;

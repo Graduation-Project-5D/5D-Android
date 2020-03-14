@@ -161,10 +161,12 @@ public class HomeImageScoreActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.image_merit:
+                        Toast.makeText(HomeImageScoreActivity.this, "相识图片择优", Toast.LENGTH_SHORT).show();
                         //直接全部默认，不用选择
-                        //用户可以点击“确定”按钮进行人脸聚类处理，或者点击“取消”按钮;
+                        //用户可以点击“确定”按钮进行相似图片择优处理，或者点击“取消”按钮;
                         break;
                     case R.id.image_score:
+                        Toast.makeText(HomeImageScoreActivity.this, "图片评分", Toast.LENGTH_SHORT).show();
                         //直接全部默认，不用选择
                         //用户可以点击“确定”按钮进行人脸聚类处理，或者点击“取消”按钮;
                         break;
