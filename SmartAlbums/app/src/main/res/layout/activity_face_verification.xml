@@ -38,7 +38,7 @@
 
         <ImageView
             android:id="@+id/image1"
-            android:layout_width="173dp"
+            android:layout_width="170dp"
             android:layout_height="216dp"
             android:src="@drawable/ai"
             android:scaleType="fitXY"
@@ -49,7 +49,7 @@
     
     <android.support.constraint.ConstraintLayout
         android:id="@+id/button1"
-        android:layout_width="173dp"
+        android:layout_width="170dp"
         android:layout_height="24dp"
         android:background="#ffffff"
         android:layout_marginTop="10dp"
@@ -84,7 +84,7 @@
 
         <ImageView
             android:id="@+id/image2"
-            android:layout_width="173dp"
+            android:layout_width="170dp"
             android:layout_height="216dp"
             android:src="@drawable/ai"
             android:scaleType="fitXY"
@@ -96,7 +96,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/button2"
-        android:layout_width="173dp"
+        android:layout_width="170dp"
         android:layout_height="24dp"
         android:background="#ffffff"
         android:layout_marginTop="10dp"
@@ -131,8 +131,8 @@
             android:layout_height="223dp"
             android:layout_gravity="center"
             app:srp_max="100"
-            app:srp_progressColor="#aaaaaa"
-            app:srp_roundColor="#000000"
+            app:srp_progressColor="##2D7AFF"
+            app:srp_roundColor="#ffffff"
             app:srp_roundWidth="6dp"
             app:srp_startAngle="0"
             app:srp_style="STROKE" />

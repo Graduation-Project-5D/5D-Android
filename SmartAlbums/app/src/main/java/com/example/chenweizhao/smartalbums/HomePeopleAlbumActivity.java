@@ -174,6 +174,7 @@ public class HomePeopleAlbumActivity extends AppCompatActivity {
                         //2张图片
                         break;
                     case R.id.face_clustering:
+
                         Toast.makeText(HomePeopleAlbumActivity.this, "人脸聚类弹窗", Toast.LENGTH_SHORT).show();
                         //直接全部聚类，不用选择
                         //用户可以点击“确定”按钮进行人脸聚类处理，或者点击“取消”按钮;
