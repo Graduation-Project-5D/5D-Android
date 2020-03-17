@@ -77,11 +77,19 @@ public class SelectImageActivity extends AppCompatActivity {
                 //mSelectCountsType为1是人脸检测（1张图片），2为人脸验证（2张图片），3为精彩视频，4为滤镜照片，5为镜头特写，6为智能推荐（图片大于等于1）
                 switch (mSelectCountsType) {
                     case 1:
-
+                        Intent intent1 = new Intent(SelectImageActivity.this, FaceDetectionActivity.class);
+                        intent1.putExtra("files", selectedImageFiles);
+                        startActivity(intent1);
+                        finish();
                         break;
                     case 2:
+                        Intent intent2 = new Intent(SelectImageActivity.this, FaceVerificationActivity.class);
+                        intent2.putExtra("files", selectedImageFiles);
+                        startActivity(intent2);
+                        finish();
                         break;
                     case 3:
+
                         break;
                     case 4:
                         break;

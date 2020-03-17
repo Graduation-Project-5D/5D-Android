@@ -23,6 +23,8 @@
         <activity android:name="HomeImageScoreActivity"/>
         <activity android:name=".HomeExcellentVideoActivity"/>
         <activity android:name="SelectImageActivity"/>
+        <activity android:name=".FaceDetectionActivity"/>
+        <activity android:name=".FaceVerificationActivity"/>
     </application>
 
     <!--拍照-->
