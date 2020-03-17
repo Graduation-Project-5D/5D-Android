@@ -114,20 +114,93 @@
             app:layout_constraintBottom_toBottomOf="@+id/button2"/>
     </android.support.constraint.ConstraintLayout>
 
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="223dp"
-        android:layout_height="223dp"
-        android:layout_marginTop="50dp"
-        android:background="#888888"
+    <LinearLayout
+        android:id="@+id/progress_layout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="90dp"
+        app:layout_constraintTop_toTopOf="@+id/button1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1">
+        app:layout_constraintRight_toRightOf="parent">
 
+        <com.example.chenweizhao.smartalbums.view.SimpleRoundProgress
+            android:id="@+id/progress"
+            android:layout_width="223dp"
+            android:layout_height="223dp"
+            android:layout_gravity="center"
+            app:srp_max="100"
+            app:srp_progressColor="#aaaaaa"
+            app:srp_roundColor="#000000"
+            app:srp_roundWidth="6dp"
+            app:srp_startAngle="0"
+            app:srp_style="STROKE" />
+    </LinearLayout>
+    
+    <android.support.v7.widget.CardView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="90dp"
+        app:layout_constraintLeft_toLeftOf="@+id/progress_layout"
+        app:layout_constraintRight_toRightOf="@+id/progress_layout"
+        app:layout_constraintTop_toTopOf="@+id/progress_layout"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_layout"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/progress_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="85"
+                android:textColor="#2D7AFF"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="35dp"
+                android:layout_marginRight="25dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textSize="30sp"
+                android:textColor="#2D7AFF"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="55dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="相似度"
+                android:textSize="18sp"
+                android:textColor="#999999"
+                android:layout_marginTop="50dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+
+
+    </android.support.v7.widget.CardView>
+
+    
 
 
 
     </android.support.constraint.ConstraintLayout>
-
-
-</android.support.constraint.ConstraintLayout>
