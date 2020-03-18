@@ -1,5 +1,6 @@
 package com.example.chenweizhao.smartalbums;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -23,6 +24,7 @@ import com.example.chenweizhao.smartalbums.adapter.AdapterMoreItem;
 import com.example.chenweizhao.smartalbums.adapter.ImagePageAdapter;
 import com.example.chenweizhao.smartalbums.data.DataImageFile;
 import com.example.chenweizhao.smartalbums.data.DataMoreItem;
+import com.example.chenweizhao.smartalbums.dialog.ConfirmDialog;
 
 import java.util.ArrayList;
 
@@ -46,6 +48,8 @@ public class HomePeopleAlbumActivity extends AppCompatActivity {
     //viewpage里所有imageview的集合
     private ArrayList<ImageView> mImageViews;
 
+    private ConfirmDialog dialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +72,7 @@ public class HomePeopleAlbumActivity extends AppCompatActivity {
         mViewPage = findViewById(R.id.viewpage);
         mRadioGroup = findViewById(R.id.radioGroup);
         linearLayout = findViewById(R.id.container);
+
     }
 
     private void initData() {
@@ -135,6 +140,18 @@ public class HomePeopleAlbumActivity extends AppCompatActivity {
     }
 
     private void initAction() {
+
+        dialog = new ConfirmDialog(HomePeopleAlbumActivity.this,
+                "人脸聚类", "是否对所选图片进行人脸聚类");
+        dialog.setClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Toast.makeText(HomePeopleAlbumActivity.this, "暂未支持人脸聚类功能", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         linearLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -174,10 +191,7 @@ public class HomePeopleAlbumActivity extends AppCompatActivity {
                         //2张图片
                         break;
                     case R.id.face_clustering:
-
-                        Toast.makeText(HomePeopleAlbumActivity.this, "人脸聚类弹窗", Toast.LENGTH_SHORT).show();
-                        //直接全部聚类，不用选择
-                        //用户可以点击“确定”按钮进行人脸聚类处理，或者点击“取消”按钮;
+                        dialog.show();
                         break;
                     default:
                         break;

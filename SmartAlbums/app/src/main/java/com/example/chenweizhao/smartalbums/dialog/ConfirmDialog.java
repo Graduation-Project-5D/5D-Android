@@ -18,14 +18,16 @@ public class ConfirmDialog extends Dialog {
     private TextView titleTv,contentTv;
     private View okBtn,cancelBtn;
 
-    public ConfirmDialog(Context context, String title, String content, View.OnClickListener listener) {
+    public ConfirmDialog(Context context, String title, String content) {
         super(context);
-        initalize();
         this.context = context;
+        initalize();
         titleTv.setText(title);
         contentTv.setText(content);
-        okBtn.setOnClickListener(listener);
+    }
 
+    public void setClickListener(View.OnClickListener listener) {
+        okBtn.setOnClickListener(listener);
     }
 
     //初始化View

@@ -131,7 +131,7 @@
             android:layout_height="223dp"
             android:layout_gravity="center"
             app:srp_max="100"
-            app:srp_progressColor="##2D7AFF"
+            app:srp_progressColor="#2D7AFF"
             app:srp_roundColor="#ffffff"
             app:srp_roundWidth="6dp"
             app:srp_startAngle="0"

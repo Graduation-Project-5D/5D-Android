@@ -1,5 +1,6 @@
 package com.example.chenweizhao.smartalbums;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.example.chenweizhao.smartalbums.adapter.AdapterMoreItem;
 import com.example.chenweizhao.smartalbums.adapter.ImagePageAdapter;
 import com.example.chenweizhao.smartalbums.data.DataImageFile;
 import com.example.chenweizhao.smartalbums.data.DataMoreItem;
+import com.example.chenweizhao.smartalbums.dialog.ConfirmDialog;
 
 import java.util.ArrayList;
 
@@ -44,6 +46,9 @@ public class HomeImageScoreActivity extends AppCompatActivity {
     private int mImageViewIndex;
     //viewpage里所有imageview的集合
     private ArrayList<ImageView> mImageViews;
+
+    private ConfirmDialog mImageMeritDialog;
+    private ConfirmDialog mImageScoreDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -134,6 +139,30 @@ public class HomeImageScoreActivity extends AppCompatActivity {
     }
 
     private void initAction() {
+
+        mImageMeritDialog = new ConfirmDialog(HomeImageScoreActivity.this,
+                "相似图片择优", "是否对所选图片进行相似图片择优");
+        mImageMeritDialog.setClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mImageMeritDialog.dismiss();
+                Intent intent = new Intent(HomeImageScoreActivity.this, ResultImageMeritActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mImageScoreDialog = new ConfirmDialog(HomeImageScoreActivity.this,
+                "图片评分", "是否对所选图片进行图片评分");
+        mImageScoreDialog.setClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mImageScoreDialog.dismiss();
+                Intent intent = new Intent(HomeImageScoreActivity.this, ResultImageScoreActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         linearLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -161,12 +190,10 @@ public class HomeImageScoreActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.image_merit:
-                        Toast.makeText(HomeImageScoreActivity.this, "相识图片择优", Toast.LENGTH_SHORT).show();
-                        //直接全部默认，不用选择
-                        //用户可以点击“确定”按钮进行相似图片择优处理，或者点击“取消”按钮;
+                        mImageMeritDialog.show();
                         break;
                     case R.id.image_score:
-                        Toast.makeText(HomeImageScoreActivity.this, "图片评分", Toast.LENGTH_SHORT).show();
+                        mImageScoreDialog.show();
                         //直接全部默认，不用选择
                         //用户可以点击“确定”按钮进行人脸聚类处理，或者点击“取消”按钮;
                         break;
