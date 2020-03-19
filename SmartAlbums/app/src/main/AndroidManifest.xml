@@ -25,6 +25,12 @@
         <activity android:name="SelectImageActivity"/>
         <activity android:name=".FaceDetectionActivity"/>
         <activity android:name=".FaceVerificationActivity"/>
+        <activity android:name=".ResultImageScoreActivity"/>
+        <activity android:name=".ResultImageMeritActivity"/>
+        <activity android:name=".ResultImageFilterActivity"/>
+        <activity android:name=".ResultSpecialAndRecommondImageActivity"/>
+        <activity android:name=".ResultMakeVideoActivity"/>
+
     </application>
 
     <!--拍照-->
