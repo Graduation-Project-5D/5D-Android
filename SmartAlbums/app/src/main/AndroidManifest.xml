@@ -3,6 +3,7 @@
     package="com.example.chenweizhao.smartalbums">
 
     <application
+        android:name=".AppContext"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,6 +17,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LocalAlbumActivity"/>
+        <activity android:name=".HomeActivity"/>
+        <activity android:name="HomePeopleAlbumActivity"/>
+        <activity android:name="HomeImageScoreActivity"/>
+        <activity android:name=".HomeExcellentVideoActivity"/>
+        <activity android:name="SelectImageActivity"/>
+        <activity android:name=".FaceDetectionActivity"/>
+        <activity android:name=".FaceVerificationActivity"/>
+        <activity android:name=".ResultImageScoreActivity"/>
+        <activity android:name=".ResultImageMeritActivity"/>
+        <activity android:name=".ResultImageFilterActivity"/>
+        <activity android:name=".ResultSpecialAndRecommondImageActivity"/>
+        <activity android:name=".ResultMakeVideoActivity"/>
+
     </application>
+
+    <!--拍照-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!--写入SD卡的权限：如果你希望保存相机拍照后的照片-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--读取SD卡的权限:打开相册选取图片所必须的权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--网络-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
 
 </manifest>

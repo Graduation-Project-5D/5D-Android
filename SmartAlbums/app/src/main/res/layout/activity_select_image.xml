@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/album_title_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="#ffffff"
+        android:gravity="top">
+
+        <ImageView
+            android:id="@+id/local_album_back"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back" />
+
+
+        <TextView
+            android:id="@+id/local_album_finish"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:enabled="true"
+            android:minWidth="50dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#2D7AFF"
+            android:layout_marginRight="10dp"
+            android:text="确定"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/select_all_image"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/local_album_finish"
+            android:layout_width="wrap_content"
+            android:enabled="true"
+            android:minWidth="50dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:layout_marginRight="10dp"
+            android:text="全选"
+            android:layout_height="30dp" />
+
+    </RelativeLayout>
+
+    <View style="@style/dividing_line_style" />
+
+
+    <GridView
+        android:id="@+id/local_album_gridview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:horizontalSpacing="7.5dp"
+        android:numColumns="3"
+        android:verticalSpacing="7.5dp"
+        tools:listitem="@layout/item_local_album"/>
+</LinearLayout>

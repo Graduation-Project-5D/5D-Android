@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/home_more"
+        android:src="@drawable/more"
+        android:layout_marginTop="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <ImageView
+        android:id="@+id/home_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <View
+        android:id="@+id/deviding_line1"
+        android:layout_marginTop="5dp"
+        style="@style/dividing_line_style"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_back" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/deviding_line1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageView
+            android:id="@+id/selected_image"
+            android:layout_width="340dp"
+            android:layout_height="340dp"
+            android:src="@drawable/ai"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toBottomOf="@+id/deviding_line"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+    </android.support.v7.widget.CardView>
+
+    <View
+        android:id="@+id/deviding_line2"
+        android:layout_marginTop="40dp"
+        style="@style/dividing_line_style"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <RadioButton
+            android:id="@+id/make_video"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:button="@null"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/make_video"
+            android:gravity="center_horizontal"
+            android:text="视频生成"
+            android:textColor="#2d7aff" />
+
+        <RadioButton
+            android:id="@+id/image_filter"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:button="@null"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/image_filter"
+            android:gravity="center_horizontal"
+            android:text="滤镜效果"
+            android:textColor="#2d7aff" />
+
+        <RadioButton
+            android:id="@+id/special_image"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:button="@null"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/special_image"
+            android:gravity="center_horizontal"
+            android:text="镜头特写"
+            android:textColor="#2d7aff" />
+
+        <RadioButton
+            android:id="@+id/intelligent_recommendation"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:button="@null"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/intelligent_recommendation"
+            android:gravity="center_horizontal"
+            android:text="智能推荐"
+            android:textColor="#2d7aff" />
+
+    </RadioGroup>
+
+    <View
+        android:id="@+id/deviding_line3"
+        android:layout_marginBottom="10dp"
+        style="@style/dividing_line_style"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"/>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:clipChildren="false"
+        android:gravity="left"
+        android:layerType="software"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/deviding_line2"
+        app:layout_constraintBottom_toTopOf="@id/deviding_line3">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:clipChildren="false" >
+        </android.support.v4.view.ViewPager>
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
