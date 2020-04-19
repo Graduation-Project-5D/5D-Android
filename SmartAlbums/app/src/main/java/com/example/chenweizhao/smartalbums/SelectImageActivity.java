@@ -1,5 +1,6 @@
 package com.example.chenweizhao.smartalbums;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 
 import com.example.chenweizhao.smartalbums.adapter.AdapterLocalAlbumItem;
 import com.example.chenweizhao.smartalbums.data.DataImageFile;
+import com.example.chenweizhao.smartalbums.dialog.LoadingDialog;
+import com.example.chenweizhao.smartalbums.tools.Constant;
 
 import java.util.ArrayList;
 
@@ -61,7 +64,7 @@ public class SelectImageActivity extends AppCompatActivity {
         mFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<DataImageFile> selectedImageFiles = mAdapterLocalAlbumItem.mSelectedImageFiles;
+                final ArrayList<DataImageFile> selectedImageFiles = mAdapterLocalAlbumItem.mSelectedImageFiles;
                 if (selectedImageFiles == null || selectedImageFiles.size() == 0) {
                     Toast.makeText(SelectImageActivity.this, "未选择图片", Toast.LENGTH_SHORT).show();
                     return;
@@ -70,6 +73,10 @@ public class SelectImageActivity extends AppCompatActivity {
                 if (mSelectCountsType == 1 || mSelectCountsType == 2) {
                     if (selectedImageFiles.size() > mSelectCountsType) {
                         Toast.makeText(SelectImageActivity.this, "最多只能选择" + mSelectCountsType + "照片", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (mSelectCountsType == 2 && selectedImageFiles.size() == 1) {
+                        Toast.makeText(SelectImageActivity.this, "人脸验证需要2张相片", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -83,10 +90,27 @@ public class SelectImageActivity extends AppCompatActivity {
                         finish();
                         break;
                     case 2:
-                        Intent intent2 = new Intent(SelectImageActivity.this, FaceVerificationActivity.class);
-                        intent2.putExtra("files", selectedImageFiles);
-                        startActivity(intent2);
-                        finish();
+                        final Dialog loadingDialog = new LoadingDialog(SelectImageActivity.this, R.style.LoadingDialog);
+                        loadingDialog.show();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                            try {
+                                Thread.sleep(800);
+                            } catch (InterruptedException e) {
+                            }
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    loadingDialog.dismiss();
+                                    Intent intent2 = new Intent(SelectImageActivity.this, FaceVerificationActivity.class);
+                                    intent2.putExtra("files", selectedImageFiles);
+                                    startActivity(intent2);
+                                    finish();
+                                }
+                            });
+                            }
+                        }).start();
                         break;
                     case 3:
 

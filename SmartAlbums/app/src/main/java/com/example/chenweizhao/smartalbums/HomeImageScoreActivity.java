@@ -1,5 +1,6 @@
 package com.example.chenweizhao.smartalbums;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -24,6 +25,7 @@ import com.example.chenweizhao.smartalbums.adapter.ImagePageAdapter;
 import com.example.chenweizhao.smartalbums.data.DataImageFile;
 import com.example.chenweizhao.smartalbums.data.DataMoreItem;
 import com.example.chenweizhao.smartalbums.dialog.ConfirmDialog;
+import com.example.chenweizhao.smartalbums.dialog.LoadingDialog;
 
 import java.util.ArrayList;
 
@@ -157,8 +159,26 @@ public class HomeImageScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mImageScoreDialog.dismiss();
-                Intent intent = new Intent(HomeImageScoreActivity.this, ResultImageScoreActivity.class);
-                startActivity(intent);
+                final Dialog loadingDialog = new LoadingDialog(HomeImageScoreActivity.this, R.style.LoadingDialog);
+                loadingDialog.show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(1500);
+                        } catch (InterruptedException e) {
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingDialog.dismiss();
+                                Intent intent = new Intent(HomeImageScoreActivity.this, ResultImageScoreActivity.class);
+                                intent.putExtra("files", mSelectedImageFiles);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                }).start();
             }
         });
 
