@@ -22,6 +22,10 @@ import java.util.HashMap;
 //添加图片的帮助类，可选择拍照或从相册中选取
 public class AddPhotoHelper {
 
+    private static Object sLock = new Object();
+
+    private static ArrayList<DataImageFile> sAllPictures;
+
     private static final String[] STORE_IMAGES = {
             MediaStore.Images.Media._ID,
             MediaStore.Images.Media.DATA,
@@ -40,7 +44,7 @@ public class AddPhotoHelper {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final ArrayList<DataImageFile> files = getAllPictures(activity);
+                final ArrayList<DataImageFile> files = getAllPictures();
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -65,40 +69,52 @@ public class AddPhotoHelper {
 
     }
 
+    public static void preLoadAllPictures(final Activity activity) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                synchronized (sLock) {
+                    ArrayList<DataImageFile> imageFiles = new ArrayList<>();
+                    //获取大图的游标
+                    Cursor cursor = activity.getContentResolver().query(
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,  // 大图URI
+                            STORE_IMAGES,   // 字段
+                            null,         // No where clause
+                            null,         // No where clause
+                            MediaStore.Images.Media.DATE_TAKEN + " DESC"); //根据时间升序
+                    if (cursor == null)
+                        return;
+                    while (cursor.moveToNext()) {
+                        int id = cursor.getInt(0);//大图ID
+                        String path = cursor.getString(1);//大图路径
+                        String thumbUri = getThumbnail(id, activity);
+                        String imageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI.buildUpon().
+                                appendPath(Integer.toString(id)).build().toString();
+                        if (imageUri.isEmpty()) {
+                            continue;
+                        }
+                        if (thumbUri == null || thumbUri.isEmpty()) {
+                            thumbUri = imageUri;
+                        }
+                        DataImageFile dataImageFile = new DataImageFile(id, imageUri, thumbUri);
+                        imageFiles.add(dataImageFile);
+                    }
+                    cursor.close();
+                    sAllPictures =  imageFiles;
+                }
+            }
+        }).start();
+    }
 
     /**
-     * 得到本地图片文件,
-     * @param activity
+     * 得到本地图片文件
      * @return
      */
-    public static ArrayList<DataImageFile> getAllPictures(Activity activity) {
-        ArrayList<DataImageFile> imageFiles = new ArrayList<>();
-        //获取大图的游标
-        Cursor cursor = activity.getContentResolver().query(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,  // 大图URI
-                STORE_IMAGES,   // 字段
-                null,         // No where clause
-                null,         // No where clause
-                MediaStore.Images.Media.DATE_TAKEN + " DESC"); //根据时间升序
-        if (cursor == null)
-            return null;
-        while (cursor.moveToNext()) {
-            int id = cursor.getInt(0);//大图ID
-            String path = cursor.getString(1);//大图路径
-            String thumbUri = getThumbnail(id, activity);
-            String imageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI.buildUpon().
-                    appendPath(Integer.toString(id)).build().toString();
-            if (imageUri.isEmpty()) {
-                continue;
-            }
-            if (thumbUri == null || thumbUri.isEmpty()) {
-                thumbUri = imageUri;
-            }
-            DataImageFile dataImageFile = new DataImageFile(id, imageUri, thumbUri);
-            imageFiles.add(dataImageFile);
+    public static ArrayList<DataImageFile> getAllPictures() {
+        synchronized (sLock) {
+            return sAllPictures;
         }
-        cursor.close();
-        return imageFiles;
+
     }
 
     //获取大图对应的缩略图

@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        AddPhotoHelper.preLoadAllPictures(this);
         mActivity = this;
         mMore = findViewById(R.id.more);
         mAddPhoto = findViewById(R.id.add_photo);
